@@ -12,7 +12,7 @@ export default function Signup(){
     const [password, setPassword] = useState('')
     const [login, setLogin] = useState(false)
 
-    function habdleSignup(){
+    function handleSignUp(){
         console.log({ email, name, password})
     }
 
@@ -70,6 +70,7 @@ export default function Signup(){
                                 style={styles.input}
                                 value={password}
                                 onChangeText={setPassword}
+                                secureTextEntry
                             
                             />
                         </View>
