@@ -2,7 +2,9 @@ import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { supabase } from "../../../lib/supabase";
+
 
 
 export default function Signup(){
@@ -12,8 +14,23 @@ export default function Signup(){
     const [password, setPassword] = useState('')
     const [login, setLogin] = useState(false)
 
-    function handleSignUp(){
-        console.log({ email, name, password})
+   async function handleSignUp(){
+       setLogin(true)
+
+       const {data, error} = await supabase.auth.signUp({
+        email: email,
+        password: password
+       })
+
+       if(error) {
+        Alert.alert('Error', error.message)
+        setLogin(false)
+        return
+
+       }
+
+       setLogin(false)
+       router.replace('/')
     }
 
 
