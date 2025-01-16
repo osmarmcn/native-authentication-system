@@ -19,7 +19,12 @@ export default function Signup(){
 
        const {data, error} = await supabase.auth.signUp({
         email: email,
-        password: password
+        password: password,
+        options:{
+            data: {
+                name:name
+            }
+        }
        })
 
        if(error) {
@@ -94,7 +99,7 @@ export default function Signup(){
 
                         <Pressable style={styles.button} onPress={handleSignUp}>
                             <Text style={styles.buttonText}>
-                                Cadastrar
+                                {login ? 'Carregando...' : 'Cadastrar'}
                             </Text>
                         </Pressable>
 
