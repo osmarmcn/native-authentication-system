@@ -35,7 +35,7 @@ export default function Signup(){
        }
 
        setLogin(false)
-       router.replace('/')
+       router.replace('/(auth)/signin/page')
     }
 
 
